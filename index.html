@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Assets/CSS/style.css" />
+</head>
+<body>
+<nav>
+    <h4><a href="#Highscores">Highscores</a></h4>
+    <h4>Timer: <span id="countdown"></span></h4>
+</nav>
+<section class="hide-element" id="landing-page">
+    <h1>Coding Quiz Challenge</h1>
+    <p>Try to answer the following code-related questions within the time limit.</p>
+    <p>Keep in mind that incorrect answers will penalize your scrore and time by</p>
+    <p><strong>10 seconds!</strong></p>
+    <p>Best of luck to you!</p>
+    <button onclick="hide" id="btn">Start Quiz</button>
+</section>
+<!-- <section>
+    <button onclick="hide" id="btn">Start Quiz</button>
+</section> -->
+<section class="hide-element" id="questions-container">
+    <h2 id="questions"></h2>
+    <div id="choices"></div>
+</section>
+<section class="hide-element" id="highscores-container">
+    <p>Please Enter your intials: 
+    <input type="text" id="name" name="initials"/> 
+    <button id="submit-results">Thank you for playing</button></p>
+</section>
+    <script src="scripy.js"></script>
+</body>
+</html>
