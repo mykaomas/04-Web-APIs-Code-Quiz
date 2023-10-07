@@ -9,20 +9,17 @@
 <body>
 <nav>
     <h4><a href="#Highscores">Highscores</a></h4>
-    <h4>Timer: <span id="countdown"></span></h4>
+    <h4 id="timer">Timer: <span id="countdown"></span></h4>
 </nav>
-<section class="hide-element" id="landing-page">
+<section id="landing-page">
     <h1>Coding Quiz Challenge</h1>
     <p>Try to answer the following code-related questions within the time limit.</p>
     <p>Keep in mind that incorrect answers will penalize your scrore and time by</p>
     <p><strong>10 seconds!</strong></p>
     <p>Best of luck to you!</p>
-    <button onclick="hide" id="btn">Start Quiz</button>
+    <button onclick="hideFirstSec()" id="btn">Start Quiz</button>
 </section>
-<!-- <section>
-    <button onclick="hide" id="btn">Start Quiz</button>
-</section> -->
-<section class="hide-element" id="questions-container">
+<!-- <section class="hide-element" id="questions-container">
     <h2 id="questions"></h2>
     <div id="choices"></div>
 </section>
@@ -30,7 +27,7 @@
     <p>Please Enter your intials: 
     <input type="text" id="name" name="initials"/> 
     <button id="submit-results">Thank you for playing</button></p>
-</section>
-    <script src="scripy.js"></script>
+</section> -->
+    <script src="./Assets/JavaScript/script.js"></script>
 </body>
 </html>

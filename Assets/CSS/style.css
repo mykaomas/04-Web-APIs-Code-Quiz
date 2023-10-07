@@ -1,3 +1,7 @@
+nav #timer {
+    float: right;
+    margin-top: 0px;
+}
 h1, p {
     text-align: center;
 }
@@ -8,8 +12,4 @@ button {
     font-size: 20px;
     background-color: purple;
     padding: 15px 20px;
-}
-
-.hide-element {
-    display:none
 }
