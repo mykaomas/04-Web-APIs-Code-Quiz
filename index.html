@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="Assets/CSS/style.css" />
+    <title>Coding Quiz</title>
+    <link rel="stylesheet" href="./Assets/CSS/style.css" />
 </head>
 <body>
 <nav>
     <h4><a href="#Highscores">Highscores</a></h4>
     <h4 id="timer">Timer: <span id="countdown"></span></h4>
 </nav>
-<section id="landing-page">
+<section id="landing-container" class="page">
     <h1>Coding Quiz Challenge</h1>
     <p>Try to answer the following code-related questions within the time limit.</p>
     <p>Keep in mind that incorrect answers will penalize your scrore and time by</p>
     <p><strong>10 seconds!</strong></p>
     <p>Best of luck to you!</p>
-    <button onclick="startGame()">Start Quiz</button>
+    <button id="start-btn"">Start Quiz</button>
 </section>
-<section id="questions" class="hide-first-questions">
-    <!-- <h2>Commonly Used Data Types DO NOT include:</h2>
-        <ol>string</ol>
-        <ol>boolean</ol>
-        <ol>numbers</ol>
-        <ol>alerts</ol> -->
+<section id="questions-container" class="page hidden">
+    <h2 id="questions-title">Questions</h2>
+        <button class="choices pick">1</button>
+        <button class="choices pick">2</button>
+        <button class="choices pick">3</button>
+        <button class="choices pick">4</button>
 </section>
 <!-- <section class="hide-element" id="highscores-container">
     <p>Please Enter your intials: 
