@@ -2,11 +2,14 @@ const startButton = document.getElementById('start-btn');
 const landingPage = document.getElementById('landing-container');
 const questionsPage = document.getElementById('questions-container');
 const timerEl = document.getElementById('countdown');
+const highscorePage = document.getElementById('highscores-container');
+const displayMsgEl = document.getElementById('display-msg');
+const scoreEl = document.getElementById('final-score')
 
 let secLeft = 75;
 let score = 0;
 let currentQuestionIndex = 0;
-let penalty = 10
+let penalty = 15
 let timerInterval;
 
 // Clicking start quiz button activates game
@@ -24,10 +27,9 @@ function startGame() {
     questionsPage.classList.remove('hidden');
 
         timerInterval = setInterval(function() {
-        console.log('timer started')
         secLeft--;
         timerEl.textContent = secLeft;
-        
+        console.log('Timer')
         if(secLeft <= 0) {
             endGame();
         
@@ -38,10 +40,8 @@ function startGame() {
           showQuestions(quizQuestions[currentQuestionIndex])
 };
 
-// for(var i = 0; i < quizQuestions.length; i++)
-
 function showQuestions(quests){
-    console.log('start')
+    console.log('Questions Start')
     // Select element
     let questionsTitle = document.getElementById('questions-title');
 
@@ -52,7 +52,6 @@ function showQuestions(quests){
     let choicesElement = document.querySelectorAll('.choices');
 
     choicesElement.forEach(function(choiceElement, index){
-        console.log('element')
         choiceElement.textContent = quests.choices[index];
 
             choiceElement.addEventListener('click', function(){
@@ -83,6 +82,9 @@ function endGame() {
  clearInterval(timerInterval);
 
     // show highscores screen
+    questionsPage.classList.add('hidden');
+    highscorePage.classList.remove('hidden');
+    scoreEl.textContent = 'Your final score is: ' + score
 }
 
 var quizQuestions = [
@@ -107,3 +109,5 @@ var quizQuestions = [
         answer: 2,
     },
 ];
+
+

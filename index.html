@@ -11,26 +11,29 @@
     <h4><a href="#Highscores">Highscores</a></h4>
     <h4 id="timer">Timer: <span id="countdown"></span></h4>
 </nav>
-<section id="landing-container" class="page">
+<section id="landing-container" class="landing">
     <h1>Coding Quiz Challenge</h1>
     <p>Try to answer the following code-related questions within the time limit.</p>
     <p>Keep in mind that incorrect answers will penalize your scrore and time by</p>
-    <p><strong>10 seconds!</strong></p>
+    <p><strong>15 seconds!</strong></p>
     <p>Best of luck to you!</p>
     <button id="start-btn"">Start Quiz</button>
 </section>
-<section id="questions-container" class="page hidden">
+<section id="questions-container" class="questions hidden">
     <h2 id="questions-title">Questions</h2>
         <button class="choices pick">1</button>
         <button class="choices pick">2</button>
         <button class="choices pick">3</button>
         <button class="choices pick">4</button>
+        <div id="display-msg"></div>
 </section>
-<!-- <section class="hide-element" id="highscores-container">
-    <p>Please Enter your intials: 
+<section id="highscores-container" class="highscores hidden">
+    <h2>All Done! Thank you for playing</h2>
+    <p><span id="final-score"></span> </p>
+    <p>Enter intials: 
     <input type="text" id="name" name="initials"/> 
-    <button id="submit-results">Thank you for playing</button></p>
-</section> -->
+    <button id="submit">Submit</button></p>
+</section>
     <script src="./Assets/JavaScript/script.js"></script>
 </body>
 </html>
