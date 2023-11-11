@@ -5,16 +5,13 @@ const timerEl = document.getElementById('countdown');
 const highscorePage = document.getElementById('highscores-container');
 const displayMsgEl = document.getElementById('display-msg');
 const scoreEl = document.getElementById('final-score');
-const initialsInput = document.querySelector('#name');
+let initialsInput = document.getElementById('name-input');
 
 let secLeft = 75;
 let score = 0;
 let currentQuestionIndex = 0;
 let penalty = 15
 let timerInterval;
-
-// Clicking start quiz button activates game
-startButton.addEventListener('click', startGame);
 
 function timeStart(){
     secLeft--;
@@ -25,6 +22,8 @@ function timeStart(){
     }
 };
 
+submitButton.addEventListener('click', startGame);
+
 function startGame() {
     // Verify game started backend
     console.log('Game started');
@@ -33,7 +32,7 @@ function startGame() {
     // Removed the hidden class from element
     questionsPage.classList.remove('hidden');
 
-    timerInterval = setInterval(timeStart, 1000);
+    // timerInterval = setInterval(timeStart, 1000);
     
     // show question
     showQuestions(quizQuestions[currentQuestionIndex])
@@ -97,16 +96,17 @@ clearInterval(timerInterval);
     // Show score to user
     scoreEl.textContent = ('Your final score is: ' + score);
 
-    var savedName = initialsInput.value;
+    let userInitials = initialsInput.value;
+
 
     // Store user inititals
-    localStorage.setItem('inititals', savedName);
-
+    localStorage.setItem('inititals', userInitials);
+    console.log('Working', userInitials);
     // Store user score
     localStorage.setItem('user score', score);
+    console.log('Working', score)
 
 }
-
 
 var quizQuestions = [
     {
