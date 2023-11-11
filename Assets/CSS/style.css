@@ -46,6 +46,16 @@ button:hover {
     background-color: #a876cf;
 }
 
+#display-msg {
+    font-size: 25px;
+    font-style: italic;
+    color: lightgray;
+    text-decoration: overline;
+    margin-left: 32%;
+    margin-top: 2%;
+
+}
+
 #submit {
     background-color: #562270;
     color: white;

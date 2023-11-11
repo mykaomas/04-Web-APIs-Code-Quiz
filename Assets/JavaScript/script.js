@@ -4,7 +4,8 @@ const questionsPage = document.getElementById('questions-container');
 const timerEl = document.getElementById('countdown');
 const highscorePage = document.getElementById('highscores-container');
 const displayMsgEl = document.getElementById('display-msg');
-const scoreEl = document.getElementById('final-score')
+const scoreEl = document.getElementById('final-score');
+const initialsInput = document.querySelector('#name');
 
 let secLeft = 75;
 let score = 0;
@@ -14,9 +15,15 @@ let timerInterval;
 
 // Clicking start quiz button activates game
 startButton.addEventListener('click', startGame);
-// let jsonString = "{key: value}";
-// let object = JSON.parse(jsonString);
-// let backToJson = JSON.stringify(object);
+
+function timeStart(){
+    secLeft--;
+    timerEl.textContent = secLeft;
+    console.log('Timer')
+    if(secLeft <= 0) {
+        endGame();
+    }
+};
 
 function startGame() {
     // Verify game started backend
@@ -26,18 +33,10 @@ function startGame() {
     // Removed the hidden class from element
     questionsPage.classList.remove('hidden');
 
-        timerInterval = setInterval(function() {
-        secLeft--;
-        timerEl.textContent = secLeft;
-        console.log('Timer')
-        if(secLeft <= 0) {
-            endGame();
-        
-          }
-        }, 1000)
+    timerInterval = setInterval(timeStart, 1000);
     
-          // show question
-          showQuestions(quizQuestions[currentQuestionIndex])
+    // show question
+    showQuestions(quizQuestions[currentQuestionIndex])
 };
 
 function showQuestions(quests){
@@ -57,15 +56,23 @@ function showQuestions(quests){
             choiceElement.addEventListener('click', function(){
                 // Check if question user picked is correct
                 if(quests.answer == index){
-                    alert('Correct!');
-                    // increase score
-                    score++
+                    console.log('Correct!');
+                    // Increases score
+                    displayMsgEl.textContent = 'Correct!';
+                    score++;
                 }
                 else {
-                alert('Incorrect!');
-                // give penalty
+                console.log('Incorrect!');
+                // Gives user penalty
+                displayMsgEl.textContent = 'WRONG!';
                 secLeft -= penalty;                
             }
+                // Displays message to user if they got it wrong/right for a second
+                displayMsgEl.setAttribute('class', 'msg');
+                setTimeout(function () {
+                displayMsgEl.setAttribute('class', 'msg hidden');
+
+                // Cycle through quiz questions array and show them to user and once completed end game 
                 currentQuestionIndex++;
                 if(currentQuestionIndex < quizQuestions.length){
                 showQuestions(quizQuestions[currentQuestionIndex]);
@@ -73,19 +80,33 @@ function showQuestions(quests){
                 else {
                     endGame();
                 }
-            });
+            }, 1000);
     });
-}
+})
+};
 
 function endGame() {
-    // stop the timer
- clearInterval(timerInterval);
+    // Stop the timer
+clearInterval(timerInterval);
 
-    // show highscores screen
+    // Show highscores screen
+    // Hide questions page
     questionsPage.classList.add('hidden');
+    // Show high score page
     highscorePage.classList.remove('hidden');
-    scoreEl.textContent = 'Your final score is: ' + score
+    // Show score to user
+    scoreEl.textContent = ('Your final score is: ' + score);
+
+    var savedName = initialsInput.value;
+
+    // Store user inititals
+    localStorage.setItem('inititals', savedName);
+
+    // Store user score
+    localStorage.setItem('user score', score);
+
 }
+
 
 var quizQuestions = [
     {
@@ -109,5 +130,3 @@ var quizQuestions = [
         answer: 2,
     },
 ];
-
-
