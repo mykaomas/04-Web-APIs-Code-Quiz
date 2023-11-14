@@ -5,13 +5,17 @@ const timerEl = document.getElementById('countdown');
 const highscorePage = document.getElementById('highscores-container');
 const displayMsgEl = document.getElementById('display-msg');
 const scoreEl = document.getElementById('final-score');
-let initialsInput = document.getElementById('name-input');
+const initialsInput = document.getElementById('name-input');
+const clearButton = document.querySelector('#clear-btn');
+const holdHighScores = document.querySelector('#hold-scores')
+
 
 let secLeft = 75;
 let score = 0;
 let currentQuestionIndex = 0;
 let penalty = 15
 let timerInterval;
+let allScores = JSON.parse(localStorage.getItem('allScores')) || [];
 
 function timeStart(){
     secLeft--;
@@ -22,8 +26,6 @@ function timeStart(){
     }
 };
 
-submitButton.addEventListener('click', startGame);
-
 function startGame() {
     // Verify game started backend
     console.log('Game started');
@@ -32,7 +34,7 @@ function startGame() {
     // Removed the hidden class from element
     questionsPage.classList.remove('hidden');
 
-    // timerInterval = setInterval(timeStart, 1000);
+    timerInterval = setInterval(timeStart, 1000);
     
     // show question
     showQuestions(quizQuestions[currentQuestionIndex])
@@ -50,6 +52,11 @@ function showQuestions(quests){
     let choicesElement = document.querySelectorAll('.choices');
 
     choicesElement.forEach(function(choiceElement, index){
+        // Resets choices removes previous event listener
+        choiceElement.replaceWith(choiceElement.cloneNode(true));
+
+        choiceElement = document.querySelectorAll('.choices')[index];
+
         choiceElement.textContent = quests.choices[index];
 
             choiceElement.addEventListener('click', function(){
@@ -85,8 +92,9 @@ function showQuestions(quests){
 };
 
 function endGame() {
-    // Stop the timer
-clearInterval(timerInterval);
+    clearInterval(timerInterval);
+    // Reset the timer to zero
+    secLeft = 0;
 
     // Show highscores screen
     // Hide questions page
@@ -95,17 +103,47 @@ clearInterval(timerInterval);
     highscorePage.classList.remove('hidden');
     // Show score to user
     scoreEl.textContent = ('Your final score is: ' + score);
+}
 
+
+// For highscores
+function gameEnded() {
+    //  Retrieve user initials
     let userInitials = initialsInput.value;
+    // Retrieve user score
+    let userScore = score; 
 
+    //  Store user's initials and score in array
+    allScores.push({ initials: userInitials, score: userScore });
+    localStorage.setItem('allScores', JSON.stringify(allScores));
+}
 
-    // Store user inititals
-    localStorage.setItem('inititals', userInitials);
-    console.log('Working', userInitials);
-    // Store user score
-    localStorage.setItem('user score', score);
-    console.log('Working', score)
+// Display high scores on the highscores page
+document.addEventListener('DOMContentLoaded', function() {
+    const allScores = JSON.parse(localStorage.getItem('allScores')) || [];
 
+    // Sort high scores from highest to lowest
+    allScores.sort((a, b) => b.score - a.score);
+
+    // Display the scores
+    allScores.forEach((player, index) => {
+    const rank = index + 1;
+    
+    const userEl = document.createElement('section');
+    // Adds user rank, initials and score
+    userEl.textContent = `${rank}. ${player.initials}: ${player.score}`;
+    // Append element to add in inititals and score
+    holdHighScores.appendChild(userEl);
+    });
+});
+
+// Erase all scores from page and local storage
+function deleteScores() {
+    const secEl = document.querySelectorAll('div')
+    secEl.forEach((div) => {
+        div.remove();
+    });
+    localStorage.clear();
 }
 
 var quizQuestions = [
@@ -129,4 +167,4 @@ var quizQuestions = [
         choices: [ '1. commas', '2. curly brackets', '3. quotes', '4. parentheses' ],
         answer: 2,
     },
-];
+]; 

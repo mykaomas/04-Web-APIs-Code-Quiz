@@ -1,0 +1,41 @@
+h1 {
+    text-align: center;
+    margin-top: 15%;
+}
+
+#hold-scores {
+    background-color: #a876cf;
+    width: 30%;
+    opacity: .7;
+    margin-left: 35%;
+    padding: 3px 10px;
+    font-weight: bold;
+}
+
+#style-scores {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#ctl-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    margin-top: 6%;
+}
+
+button {
+    color: white;
+    font-size: 15px;
+    background-color: #562270;
+    padding: 10px 30px;
+}
+
+button a:visited, button a:link {
+    color: white;
+    text-decoration: none;
+}

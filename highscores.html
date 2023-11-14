@@ -4,9 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coding Quiz Score</title>
+    <link rel="stylesheet" href="./Assets/CSS/highscore-style.css" />
 </head>
 <body>
+    <h1>Highscores</h1>
+    <div id="hold-scores">
+    <section class="save-initials, score-saved" id="style-scores">
+        </section>
+    </div>
+    <section id="ctl-btn">
     <button><a href="index.html"> Take the Quiz Again</a></button>
-    <button>Clear High scores</button>
+    <button id='clear-btn' onclick="deleteScores()">Clear Highscores</button>
+        </section>
+
+    <script src="./Assets/JavaScript/script.js"></script>
 </body>
 </html>

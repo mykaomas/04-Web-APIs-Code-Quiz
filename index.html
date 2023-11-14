@@ -17,7 +17,7 @@
     <p>Keep in mind that incorrect answers will penalize your scrore and time by</p>
     <p><strong>15 seconds!</strong></p>
     <p>Best of luck to you!</p>
-    <button id="start-btn">Start Quiz</button>
+    <button id="start-btn" onclick="startGame()">Start Quiz</button>
 </section>
 <section id="questions-container" class="questions hidden">
     <h2 id="questions-title">Questions</h2>
@@ -27,13 +27,13 @@
         <button class="choices pick">4</button>
         <div id="display-msg"></div>
 </section>
-<section id="highscores-container" class="highscores hidden">
+<section id='highscores-container' class="highscores hidden">
     <h2>All Done! Thank you for playing</h2>
     <p><span id="final-score"></span> </p>
     <p>Enter intials: 
     <input type="text" id="name-input" name="initials"/>
     <a href="highscores.html">
-    <button id="submit">Submit</button></p></a>
+    <button id="submit" onclick="gameEnded()">Submit</button></p></a>
 </section>
     <script src="./Assets/JavaScript/script.js"></script>
 </body>
